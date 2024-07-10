@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 
 from students.forms import StudentForm, NewStudentComplainForm
 
@@ -23,4 +24,15 @@ def login(request):
 
 def register(request):
     form = NewStudentComplainForm()
-    return render(request, 'register', {'form', 'boby'})
+
+    if request.method == 'POST':
+        form = NewStudentComplainForm(request.POST)
+    if form.is_valid():
+        # print("VALID")
+        form.save()
+        NewStudentComplainForm()
+        messages.success(request, 'User Registered Successfully')
+        return redirect('register')
+    else:
+        form = NewStudentComplainForm()
+    return render(request, 'register.html', {'form': form})

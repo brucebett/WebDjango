@@ -7,3 +7,14 @@ class StudentComplain(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class StudentProposal(models.Model):
+    first_name = models.CharField(max_length=10)
+    last_name = models.CharField(max_length=10)
+    gander = models.CharField(max_length=10)
+    email = models.EmailField()
+    age = models.IntegerField()
+
+    def __str__(self):
+        return self.first_name
