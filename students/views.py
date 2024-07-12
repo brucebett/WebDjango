@@ -1,10 +1,11 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
-from students.forms import StudentForm, NewStudentComplainForm
+from students.forms import StudentForm, NewStudentComplainForm, StudentProposalForm
 
 
 # Create your views here.
+
 def index(request):
     return render(request, 'index.html')
 
@@ -27,12 +28,24 @@ def register(request):
 
     if request.method == 'POST':
         form = NewStudentComplainForm(request.POST)
-    if form.is_valid():
-        # print("VALID")
-        form.save()
-        NewStudentComplainForm()
-        messages.success(request, 'User Registered Successfully')
-        return redirect('register')
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'User Registered Successfully')
+            return redirect('register')
     else:
         form = NewStudentComplainForm()
+
     return render(request, 'register.html', {'form': form})
+
+
+def studentproposal(request):
+    if request.method == 'POST':
+        form = StudentProposalForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Proposal Submitted Successfully')
+            return redirect('studentproposal')
+    else:
+        form = StudentProposalForm()
+
+    return render(request, 'studentproposal.html', {'form': form})

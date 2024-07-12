@@ -12,7 +12,7 @@ class StudentComplain(models.Model):
 class StudentProposal(models.Model):
     first_name = models.CharField(max_length=10)
     last_name = models.CharField(max_length=10)
-    gander = models.CharField(max_length=10)
+    gender = models.CharField(max_length=10)
     email = models.EmailField()
     age = models.IntegerField()
 

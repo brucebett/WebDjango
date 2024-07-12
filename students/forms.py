@@ -1,6 +1,7 @@
 from django import forms
 
 from students.models import StudentComplain
+from .models import StudentProposal
 
 
 class StudentForm(forms.Form):
@@ -15,3 +16,9 @@ class NewStudentComplainForm(forms.ModelForm):
     class Meta:
         model = StudentComplain
         fields = ['name', 'body']
+
+
+class StudentProposalForm(forms.ModelForm):
+    class Meta:
+        model = StudentProposal
+        fields = ['first_name', 'last_name', 'gender', 'email', 'age']
